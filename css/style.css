@@ -27,7 +27,7 @@ a {
 }
 
 a:hover {
-  color: gray;
+  color: #f7fff7;
 }
 
 h1,
@@ -84,15 +84,15 @@ hr {
 .btn {
   background-color: #0a2463;
   border-color: #f7fff7;
-  color: #f7fff7;
+  color: #0a2463;
   font-size: 18px;
   margin-bottom: 50px;
 }
 
 .btn:hover {
-  background-color: gray;
+  background-color: #f7fff7;
   border-color: #f7fff7;
-  color: #f7fff7;
+  color: #0a2463;
 }
 
 .nopadding {
@@ -104,8 +104,8 @@ hr {
 
 .navbar-dark,
 .bg-dark {
-  background-color: #f7fff7 !important;
-  color: #0a2463;
+  background-color: #0a2463 !important;
+  color: #f7fff7;
 }
 
 .navbar-brand {
@@ -122,7 +122,7 @@ hr {
 }
 
 .navbar-toggler:hover {
-  background-color: #333333;
+  background-color: #f7fff7;
   color: #0a2463;
 }
 
@@ -266,20 +266,10 @@ header {
   text-align: center;
 }
 
-.pillars h2 {
-  padding: 25px;
-}
-
-.pillars p {
-  font-size: 18px;
-  padding-bottom: 0px;
-}
-
 .pillars i {
   background-color: #0a2463;
   border-radius: 65%;
   color: #f7fff7;
-  font-size: 60px;
   height: 80px;
   padding-bottom: 40px;
   width: 80px;
@@ -349,10 +339,6 @@ header {
 
 .nopadding .fa {
   font-size: 90px;
-}
-
-.nopadding .fa:hover {
-  color: gray;
 }
 
 /***** END ABOUT US *****/
