@@ -78,20 +78,20 @@ hr {
 #service-carousel,
 #join-carousel,
 #media {
-  margin-top: 60px;
+  margin-top: 30px;
+  height: 100vh;
+  width: 100vw;
 }
 
 .btn {
   background-color: #0a2463;
-  border-color: #f7fff7;
-  color: #0a2463;
+  color: #f7fff7;
   font-size: 18px;
   margin-bottom: 50px;
 }
 
 .btn:hover {
   background-color: #f7fff7;
-  border-color: #f7fff7;
   color: #0a2463;
 }
 
@@ -106,6 +106,7 @@ hr {
 .bg-dark {
   background-color: #0a2463 !important;
   color: #f7fff7;
+  margin-bottom: 0px;
 }
 
 .navbar-brand {
@@ -275,6 +276,11 @@ header {
   width: 80px;
 }
 
+.pillar-titles {
+  font-style: italic;
+  font-size: 20px;
+}
+
 @media (max-width: 768px) {
   .about-us {
     padding-left: 5px !important;
@@ -343,21 +349,21 @@ header {
 
 /***** END ABOUT US *****/
 
-/***** PLACEMENTS *****/
+/***** platform *****/
 
-.placements {
-  background-color: #f7fff7;
+.platform {
+  background-color: #0a2463;
   padding: 50px 0;
   text-align: center;
 }
 
-.placements h1,
-.placements h4,
-.placements p {
-  color: black;
+.platform h1,
+.platform h4,
+.platform p {
+  color: #f7fff7;
 }
 
-.placements img {
+.platform img {
   /* Safari and Chrome */
   -moz-transition: all 1s ease;
   /* Firefox */
@@ -373,7 +379,7 @@ header {
   transition: all 1s ease;
 }
 
-.placements img:hover {
+.platform img:hover {
   /* Safari and Chrome */
   -moz-transform: scale(1.1);
   /* Firefox */
@@ -385,27 +391,27 @@ header {
   transform: scale(1.1);
 }
 
-.placements i {
+.platform i {
   background-color: gray;
   border-radius: 50%;
-  color: #fff;
+  color: #;
   font-size: 17px;
   height: 30px;
   padding: 5px;
   width: 30px;
 }
 
-.placements i:hover {
+.platform i:hover {
   color: black;
 }
 
 @media (max-width: 768px) {
-  .placements {
+  .platform {
     padding: 30px;
   }
 }
 
-/***** END PLACEMENTS *****/
+/***** END platform *****/
 
 /***** EVENTS *****/
 .events {
@@ -660,5 +666,4 @@ header {
 .credits a {
   color: var(--magisGold);
 }
-
 /***** END FOOTER *****/
