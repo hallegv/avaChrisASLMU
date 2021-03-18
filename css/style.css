@@ -4,8 +4,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .main-heading, .carousel, .carousel-inner, .carousel-caption {
-    font-size: 2px;
+  .main-heading, .carousel, .carousel-inner, .carousel-caption, .portrait {
     align-items: left;
     justify-content: center;
   }
