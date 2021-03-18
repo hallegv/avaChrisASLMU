@@ -4,12 +4,9 @@
 }
 
 @media screen and (max-width: 800px) {
-  .main-heading, .carousel, .carousel-inner, .carousel-caption, .portrait {
+  .main-heading, .carousel, .carousel-inner, .carousel-caption, .portrait, .col {
     align-items: left;
     justify-content: center;
-  }
-  .col {
-    width: 90vw;
   }
 }
 
