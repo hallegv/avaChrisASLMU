@@ -3,17 +3,6 @@
   padding: 0;
 }
 
-/* @media screen and (max-width: 800px) {
-  .main-heading, .carousel, .carousel-inner, .carousel-caption, .portrait, .col {
-    align-items: left;
-    justify-content: center;
-  }
-
-  .fill {
-    width: 100vw;
-  }
-} */
-
 html,
 body {
   height: 100%;
