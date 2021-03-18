@@ -3,6 +3,17 @@
   padding: 0;
 }
 
+@media screen and (max-width: 800px) {
+  .main-heading, .carousel, .carousel-inner, .carousel-caption {
+    font-size: 2px;
+    align-items: left;
+    justify-content: center;
+  }
+  .col {
+    width: 90vw;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -174,6 +185,7 @@ header {
 .main-heading {
   color: #f7fff7;
   font-size: 80px;
+  font-weight: bold;
   letter-spacing: 10px;
 }
 
