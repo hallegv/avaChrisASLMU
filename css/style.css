@@ -140,6 +140,17 @@ header {
   width: 100%;
 }
 
+.fill-up {
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-position: center;
+  background-size: cover;
+  object-fit: cover;
+  object-position: 100% 30%;
+  height: 100%;
+  width: 100%;
+}
+
 .carousel,
 .carousel-inner {
   display: block;
