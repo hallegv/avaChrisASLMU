@@ -1,0 +1,82 @@
+#wordle {
+  width: 100vw;
+  height: 81.4vh;
+  margin: 0;
+  padding-top: 13vh;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  place-items: center;
+  user-select: none;
+}
+
+#letters {
+  width: auto;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  row-gap: 1vh;
+  column-gap: 1vh;
+}
+
+.letter {
+  border-style: solid;
+  border-color: black;
+  height: 7vh;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.letter > p {
+  margin: 0;
+  font-size: 5vh;
+  color: black;
+}
+
+.kRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.key {
+  background-color: lightgray;
+  width: auto;
+  min-width: 4vh;
+  height: 6vh;
+  display: grid;
+  place-items: center;
+  margin: 0.5vh 0.5vw;
+  padding-right: 0.5vh;
+  padding-left: 0.5vh;
+  border-radius: 1vh;
+}
+
+.key > p {
+  margin: 0;
+  font-size: 3vh;
+  color: black;
+}
+
+#ENTER > p {
+  font-size: 2.5vh;
+}
+
+#DELETE > p {
+  padding-right: 1.1vh;
+  padding-left: 1.1vh;
+}
+
+.wrong {
+  background-color: gray;
+}
+
+.misplaced {
+  background-color: yellow;
+}
+
+.correct {
+  background-color: green;
+}
