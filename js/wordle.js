@@ -1,7 +1,5 @@
 const RESULTS_TEMPLATE = new Image();
 RESULTS_TEMPLATE.setAttribute('crossOrigin', 'anonymous');
-// RESULTS_TEMPLATE.src = "https://drive.google.com/file/d/1qdgcTFSSHKNuKiVIJwsjCUJTQyB_9O-6/preview";
-// RESULTS_TEMPLATE.src = "../images/The Christopherdle!-3.png"
 RESULTS_TEMPLATE.src = "https://static.wixstatic.com/media/f978aa_c24b902f2ac348fbb0d852e71c3f4575~mv2.png/v1/fill/w_1080,h_1919,al_c,enc_auto/The%20Christopherdle!-3.png"
 
 let squares = 5 * 6;
@@ -33,6 +31,22 @@ function main() {
   loadKeyboard();
   setSyncScheduler(updateClock, 1000, $('#time'));
   loadButton();
+  let cookies = getCookies();
+  if ("date" in cookies && 
+  "tries" in cookies && 
+  "colorSquares" in cookies &&
+  parseInt(cookies.date) >= (new Date()).getDate()) {
+    makeResults(cookies.tries, cookies.colorSquares.slice(1, -1).split(','))
+  }
+}
+
+function getCookies() {
+  let cookies = new Object();
+  document.cookie.split(";").map(x => {
+    cookie = x.split("=");
+    cookies[cookie[0].trim()] = cookie[1].trim();
+  });
+  return cookies;
 }
 
 function loadButton(){
@@ -95,7 +109,7 @@ function handleEnter() {
     return;
   }
   if (!OPTIONS.has(currentGuess.join(''))){
-    console.log("NOT IN WORD LIST MESSAGE");
+    console.log("NOT IN WORD LIST");
     return;
   }
   renderGuess();
@@ -110,9 +124,16 @@ function handleEnter() {
     $(document.body).off("keydown");
     $(".key").off("click");
     let tries = gameOver === 1 ? gridRow : "X";
-    makeResults(tries, getColorSquares());
-    showResults();
+    let colorSquares = getColorSquares();
+    makeResults(tries, colorSquares);
+    saveGameToCookies(tries, colorSquares);
   }
+}
+
+function saveGameToCookies(tries, colorSquares){
+  document.cookie = `date=${(new Date).getDate()}`;
+  document.cookie = `tries=${tries}`;
+  document.cookie = `colorSquares=[${colorSquares}]`;
 }
 
 function makeResults(tries, colorSquares) {
@@ -140,6 +161,7 @@ function makeResults(tries, colorSquares) {
   let lossText = "Better luck next time. Share your results (and who you're voting for). Don't forget to tag @chrisandava2022"
   $("#results > p").text(`${tries}/6 ${tries != "X" ? winText : lossText}`);
   addButtonDownload(canvas);
+  setTimeout(showResults, 1000);
 }
 
 function addButtonDownload(canvas) {
@@ -222,10 +244,8 @@ function renderColors(states) {
 
 function isGameOver(states) {
   if (states.every(x => x === "correct")) {
-    console.log("YOU WON");
     return 1;
   } else if (gridRow >= 6) {
-    console.log("YOU LOST");
     return -1;
   }
   return 0;
