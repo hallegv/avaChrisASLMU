@@ -3,6 +3,19 @@
   padding: 0;
 }
 
+:root {
+  --cream: #e3d6b3;
+  --tan: #bd8e6c;
+  --gray: #434948;
+  --darkGray: #434948;
+  --yellow: #c48e2b;
+  --red: #ab2c29;
+  --pink: #e29197;
+  --blue: #46b8e5;
+  --iceBlue: #cedce3;
+
+}
+
 html,
 body {
   height: 100%;
@@ -18,11 +31,11 @@ section {
 }
 
 a {
-  color: #f7fff7;
+  color: var(--red);
 }
 
 a:hover {
-  color: #f7fff7;
+  color: var(--red);
 }
 
 h1,
@@ -31,7 +44,7 @@ h3,
 h4,
 h5,
 p {
-  color: #f7fff7;
+  color: var(--red);
 }
 
 h1,
@@ -79,15 +92,15 @@ hr {
 }
 
 .btn {
-  background-color: #0a2463;
-  color: #f7fff7;
+  background-color: var(--cream);
+  color: var(--red);
   font-size: 18px;
   margin-bottom: 50px;
 }
 
 .btn:hover {
-  background-color: #f7fff7;
-  color: #0a2463;
+  background-color: var(--red);
+  color: var(--cream);
 }
 
 .nopadding {
@@ -99,8 +112,8 @@ hr {
 
 .navbar-dark,
 .bg-dark {
-  background-color: #0a2463 !important;
-  color: #f7fff7;
+  background-color: var(--cream) !important;
+  color: var(--red);
   margin-bottom: 0px;
 }
 
@@ -183,20 +196,20 @@ header {
 }
 
 .main-heading {
-  color: #f7fff7;
+  color: var(--red);
   font-size: 80px;
   font-weight: bold;
   letter-spacing: 10px;
 }
 
 .small-heading {
-  color: #f7fff7;
+  color: var(--red);
   font-size: 30px;
   font-weight: lighter;
 }
 
 .title {
-  color: #f7fff7;
+  color: var(--red);
   font-size: 40px;
 }
 
@@ -220,7 +233,7 @@ header {
 
 /***** OUR PLATFORM *****/
 .aboutUs {
-  background-color: #0a2463;
+  background-color: var(--cream);
   left: 0;
   position: relative;
   top: 0;
@@ -234,16 +247,16 @@ header {
 }
 
 .pillars {
-  background-color: #0a2463;
+  background-color: var(--cream);
   margin-top: 0px;
   padding-bottom: 60px !important;
   text-align: center;
 }
 
 .pillars i {
-  background-color: #0a2463;
+  background-color: var(--cream);
   border-radius: 65%;
-  color: #f7fff7;
+  color: var(--red);
   height: 80px;
   width: 80px;
 }
@@ -259,7 +272,7 @@ header {
 }
 
 .explore {
-  background-color: #0a2463;
+  background-color: var(--cream);
 }
 
 .explore h1 {
@@ -299,7 +312,7 @@ header {
 }
 
 .platform {
-  background-color: #0a2463;
+  background-color: var(--cream);
   padding: 50px 0;
   text-align: center;
 }
@@ -307,7 +320,7 @@ header {
 .platform h1,
 .platform h4,
 .platform p {
-  color: #f7fff7;
+  color: var(--red);
 }
 
 .platform img {
@@ -341,7 +354,7 @@ header {
 .platform i {
   background-color: gray;
   border-radius: 50%;
-  color: #;
+  color: var(--red);
   font-size: 17px;
   height: 30px;
   padding: 5px;
@@ -363,7 +376,7 @@ header {
 /***** JOIN THE MOVEMENT *****/
 
 .join {
-  background-color: #181818;
+  background-color: var(--red);
   overflow: auto;
   padding: 30px;
   padding-bottom: 100px;
@@ -384,7 +397,7 @@ header {
 }
 
 .join h1 {
-  color: #f7fff7;
+  color: var(--red);
 }
 
 .join p {
@@ -399,7 +412,7 @@ header {
 
 .join .packages {
   background-color: black;
-  border: 1px solid #ccc;
+  border: 1px solid var(--red);
   border-radius: 5px;
   margin-top: 30px;
   padding: 30px;
@@ -423,7 +436,7 @@ header {
 
 @media (max-width: 768px) {
   .join-home .main-heading {
-    color: #f7fff7;
+    color: var(--red);
     font-size: 36px;
     letter-spacing: 0px;
   }
@@ -449,8 +462,8 @@ header {
 /******* FOOTER ********/
 
 .contact {
-  background-color: #0a2463;
-  color: #cccccc;
+  background-color: var(--cream);
+  color: var(--pink);
   padding: 30px;
 }
 
@@ -460,7 +473,7 @@ header {
 }
 
 .credits a {
-  color: #e49273;
+  color: var(--red);
 }
 
 /***** END FOOTER *****/
