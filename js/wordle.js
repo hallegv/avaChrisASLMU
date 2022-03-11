@@ -1,3 +1,9 @@
+const RESULTS_TEMPLATE = new Image();
+RESULTS_TEMPLATE.setAttribute('crossOrigin', 'anonymous');
+// RESULTS_TEMPLATE.src = "https://drive.google.com/file/d/1qdgcTFSSHKNuKiVIJwsjCUJTQyB_9O-6/preview";
+// RESULTS_TEMPLATE.src = "../images/The Christopherdle!-3.png"
+RESULTS_TEMPLATE.src = "https://static.wixstatic.com/media/f978aa_c24b902f2ac348fbb0d852e71c3f4575~mv2.png/v1/fill/w_1080,h_1919,al_c,enc_auto/The%20Christopherdle!-3.png"
+
 let squares = 5 * 6;
 let target;
 
@@ -10,8 +16,13 @@ let backspaceCode = 8;
 let gridRow = 0;
 let currentGuess = new Array();
 let colorsGuess = new Array();
+let prevStates = new Array();
+
+const DAY_INDEX = 3;//(new Date).getDate() - 14;
 
 const KEYS = ["qwertyuiop", "asdfghjkl", "+zxcvbnm-"];
+
+const IS_MOBILE = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 $(main);
 
@@ -20,10 +31,21 @@ function main() {
   loadLetters();
   $(document.body).keydown(handleInput);
   loadKeyboard();
+  setSyncScheduler(updateClock, 1000, $('#time'));
+  loadButton();
+}
+
+function loadButton(){
+  let text = "Download";
+  if (IS_MOBILE) {
+    text = "Share";
+  }
+  $(".button").text(text);
 }
 
 function getTarget() {
-  return TARGETS[Math.floor(Math.random()*TARGETS.length)].split("");
+  // return TARGETS[Math.floor(Math.random()*TARGETS.length)].split("");
+  return TARGETS[DAY_INDEX];
 }
 
 function loadLetters() {
@@ -78,14 +100,73 @@ function handleEnter() {
   }
   renderGuess();
   const states = checkGuess();
+  prevStates.push(states);
   renderColors(states);
   renderKeyboard();
   currentGuess = new Array();
   gridRow++;
-  if (isEndGame(states)) {
+  let gameOver = isGameOver(states);
+  if (gameOver != 0) {
     $(document.body).off("keydown");
     $(".key").off("click");
+    let tries = gameOver === 1 ? gridRow : "X";
+    makeResults(tries, getColorSquares());
+    showResults();
   }
+}
+
+function makeResults(tries, colorSquares) {
+  const canvas = $("canvas").get(0);
+  const ctx = canvas.getContext('2d');
+
+  const vh = window.innerHeight / 100;
+  const base = 3;
+  const w = base * 9 * vh;
+  const h = base * 16 * vh;
+  canvas.width = w;
+  canvas.height = h;
+
+  ctx.drawImage(RESULTS_TEMPLATE, 0, 0, w, h);
+  ctx.textAlign = "center";
+  ctx.font = "3vh serif";
+  const lineheight = ctx.font.match(/\d+/).join('') * 1.4;
+  for (let i = 0; i < colorSquares.length; i++) {
+    ctx.fillText(colorSquares[i], w/2, h/4 + (i * lineheight));
+  }
+  ctx.font = "bold 3vh 'playfair display'"
+  ctx.fillText(`#${DAY_INDEX+1}`, w - 4 * vh, 6.15 * vh);
+
+  let winText = "You won! Now show the world how smart you are (and who you're voting for). Don't forget to tag @chrisandava2022";
+  let lossText = "Better luck next time. Share your results (and who you're voting for). Don't forget to tag @chrisandava2022"
+  $("#results > p").text(`${tries}/6 ${tries != "X" ? winText : lossText}`);
+  addButtonDownload(canvas);
+}
+
+function addButtonDownload(canvas) {
+  $(".button").on("click", x => {
+    let anchor = document.createElement("a");
+    anchor.href = canvas.toDataURL("image/png");
+    anchor.download = "result.png";
+    anchor.click();
+    anchor.remove();
+    if (IS_MOBILE) {
+      let anchor = document.createElement("a");
+      anchor.href = "instagram://story-camera";
+      anchor.click();
+      anchor.remove();
+    }
+  })
+}
+
+function showResults(){
+  $("#result").removeClass("hide");
+}
+
+function getColorSquares() {
+  return prevStates
+  .map(states => states
+    .map(state => state === "correct" ? "\uD83D\uDFE9" : state === "misplaced" ? "\uD83D\uDFE8" : "\u2B1B")
+    .join(""))
 }
 
 function checkGuess() {
@@ -139,15 +220,15 @@ function renderColors(states) {
   }
 }
 
-function isEndGame(states) {
+function isGameOver(states) {
   if (states.every(x => x === "correct")) {
     console.log("YOU WON");
-    return true;
+    return 1;
   } else if (gridRow >= 6) {
     console.log("YOU LOST");
-    return true;
+    return -1;
   }
-  return false;
+  return 0;
 }
 
 function handleBackspace() {
@@ -185,4 +266,27 @@ function renderKeyboard() {
   for (let l of wrongLetters) {
     $(`#${l}`).addClass("wrong");
   }
+}
+
+function updateClock(clockElement) {
+  let timeString = getTimeString(new Date());
+  clockElement.text(timeString);
+}
+
+function getTimeString(date) {
+  let sec = twoDigit(59 - date.getSeconds());
+  let min = twoDigit(59 - date.getMinutes()); 
+  let hour = twoDigit(23 - date.getHours());
+  return `${hour}:${min}:${sec}`;
+}
+
+function twoDigit(n){
+  return (new String(n)).length === 2 ? n : "0" + n;
+}
+
+function setSyncScheduler(func, interval, ...args) {
+  let now = (new Date()).getTime();
+  let delay = interval - now % interval;
+  func(...args);
+  setInterval(func, delay, ...args);
 }

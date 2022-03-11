@@ -80,3 +80,70 @@
 .correct {
   background-color: green;
 }
+
+#result {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding-top: 10vh;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(1.3vmin) brightness(85%);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container {
+  width: min(90%, 60vh);
+  height: 90%;
+  background-color: rgb(0, 0, 40);
+  border-radius: 4vh;
+  box-shadow: 0 .7vh 1.4vh rgb(0 0 0 / 50%);
+  text-align: center;
+  padding-top: 1vh;
+}
+
+.hide {
+  display: none !important;
+}
+
+canvas {
+  box-shadow: 0 0 80vh white;
+}
+
+#results {
+  padding: 1.5vh 2vh 0.1vh;
+}
+
+#bottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+}
+
+#bottom > div > p {
+  margin: 0;
+}
+
+#timer {
+  border-right: solid white;
+}
+
+.button {
+  background-color: white;
+  width: 70%;
+  height: 90%;
+  place-self: center;
+  border-radius: 1vh;
+  color: black;
+}
+
+.button:hover {
+  width: 72%;
+  height: 92%;
+  color: black;
+  text-decoration: none;
+}
