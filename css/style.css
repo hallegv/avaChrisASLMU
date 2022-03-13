@@ -4,16 +4,16 @@
 }
 
 :root {
-  --cream: #e3d6b3;
+  --cream: #ece6c2;
   --tan: #bd8e6c;
   --gray: #434948;
   --darkGray: #434948;
   --yellow: #c48e2b;
-  --red: #ab2c29;
-  --pink: #e29197;
+  --red: #f1333f;
+  --pink: #f5a2bc;
   --blue: #46b8e5;
   --iceBlue: #cedce3;
-
+  --navy: #2f4260;
 }
 
 html,
@@ -26,8 +26,17 @@ body {
   font-family: "Roboto Condensed", sans-serif;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: var(--pink);
+  text-align: center;
+}
+
 section {
   padding: 40px;
+  background-color: var(--pink);
 }
 
 a {
@@ -92,7 +101,7 @@ hr {
 }
 
 .btn {
-  background-color: var(--cream);
+  background-color: var(--pink);
   color: var(--red);
   font-size: 18px;
   margin-bottom: 50px;
@@ -112,7 +121,7 @@ hr {
 
 .navbar-dark,
 .bg-dark {
-  background-color: var(--cream) !important;
+  background-color: var(--pink) !important;
   color: var(--red);
   margin-bottom: 0px;
 }
@@ -233,7 +242,7 @@ header {
 
 /***** OUR PLATFORM *****/
 .aboutUs {
-  background-color: var(--cream);
+  background-color: var(--pink);
   left: 0;
   position: relative;
   top: 0;
@@ -247,14 +256,14 @@ header {
 }
 
 .pillars {
-  background-color: var(--cream);
+  background-color: var(--pink);
   margin-top: 0px;
   padding-bottom: 60px !important;
   text-align: center;
 }
 
 .pillars i {
-  background-color: var(--cream);
+  background-color: var(--pink);
   border-radius: 65%;
   color: var(--red);
   height: 80px;
@@ -272,7 +281,7 @@ header {
 }
 
 .explore {
-  background-color: var(--cream);
+  background-color: var(--pink);
 }
 
 .explore h1 {
@@ -312,7 +321,7 @@ header {
 }
 
 .platform {
-  background-color: var(--cream);
+  background-color: var(--pink);
   padding: 50px 0;
   text-align: center;
 }
@@ -373,96 +382,11 @@ header {
 
 /***** END OUR PLATFORM *****/
 
-/***** JOIN THE MOVEMENT *****/
-
-.join {
-  background-color: var(--red);
-  overflow: auto;
-  padding: 30px;
-  padding-bottom: 100px;
-}
-
-.fill2 {
-  background-position: center;
-  background-size: cover;
-  height: auto;
-  width: 100%;
-}
-
-.join img {
-  max-height: 300px;
-  max-width: 300px;
-  padding-bottom: 30px;
-  padding-bottom: 30px;
-}
-
-.join h1 {
-  color: var(--red);
-}
-
-.join p {
-  text-align: left;
-}
-
-.join .col-md-6,
-.join .col-lg-6 {
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
-.join .packages {
-  background-color: black;
-  border: 1px solid var(--red);
-  border-radius: 5px;
-  margin-top: 30px;
-  padding: 30px;
-}
-
-.join .row-1 {
-  background-color: black;
-}
-
-.join .row-2 {
-  background-color: #080808;
-}
-
-.join .left-side {
-  padding: 50px 50px 50px 30px;
-}
-
-.join .right-side {
-  padding: 50px 30px 50px 50px;
-}
-
-@media (max-width: 768px) {
-  .join-home .main-heading {
-    color: var(--red);
-    font-size: 36px;
-    letter-spacing: 0px;
-  }
-
-  .join h3 {
-    font-size: 20px;
-  }
-
-  .join .left-side,
-  .join .right-side {
-    padding: 20px;
-  }
-
-  .join .col-md-6,
-  .join .col-lg-6 {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-
-/***** END JOIN THE MOVEMENT *****/
 
 /******* FOOTER ********/
 
 .contact {
-  background-color: var(--cream);
+  background-color: var(--pink);
   color: var(--pink);
   padding: 30px;
 }
