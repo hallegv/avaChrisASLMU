@@ -1,8 +1,8 @@
 #wordle {
   width: 100vw;
-  height: 81.4vh;
+  height: 80vh;
   margin: 0;
-  padding-top: 13vh;
+  padding-top: 15vh;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   place-items: center;
@@ -19,11 +19,15 @@
   column-gap: 1vh;
 }
 
+#keyboard {
+  padding-top: 3vh;
+}
+
 .letter {
   border-style: solid;
   border-color: black;
   height: 7vh;
-  aspect-ratio: 1;
+  width: 7vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,4 +150,11 @@ canvas {
   height: 92%;
   color: black;
   text-decoration: none;
+}
+
+.contact {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
