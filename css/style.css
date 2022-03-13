@@ -16,6 +16,15 @@
   --navy: #2f4260;
 }
 
+@media (max-width: 750px) {
+  .carousel-inner, .full-width, .navbar-dark, .bg-dark {
+    width: 85%;
+  }
+  .main-heading, .main-heading-down, .main-heading-down-more, .main-heading-up {
+    font-size: 20px;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -169,7 +178,7 @@ header {
   background-position: center;
   background-size: cover;
   object-fit: cover;
-  object-position: 100% 30%;
+  object-position: 100% 40%;
   height: 100%;
   width: 100%;
 }
@@ -210,6 +219,30 @@ header {
   font-size: 80px;
   font-weight: bold;
   letter-spacing: 10px;
+}
+
+.main-heading-up {
+  color: var(--red);
+  font-size: 80px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  margin-top: -20%;
+}
+
+.main-heading-down {
+  color: var(--red);
+  font-size: 80px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  margin-top: 20%;
+}
+
+.main-heading-down-more {
+  color: var(--red);
+  font-size: 70px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  margin-top: 35%;
 }
 
 .small-heading {
