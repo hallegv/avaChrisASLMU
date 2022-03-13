@@ -387,18 +387,22 @@ header {
 /******* FOOTER ********/
 
 .contact {
-  background-color: var(--pink);
-  color: var(--pink);
-  padding: 30px;
+  background-color: var(--red);
+  color: var(--cream);
+  padding: 20px;
 }
 
 .credits {
   text-align: right;
-  padding-top: 50px;
 }
 
 .credits a {
-  color: var(--red);
+  color: var(--pink);
+}
+
+.credits a:hover {
+  color: var(--cream);
+  text-decoration: none;
 }
 
 /***** END FOOTER *****/
