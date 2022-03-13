@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/animate.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../css/style.css" />
-    <link type="text/css" rel="stylesheet" href="../css/wordle.css" />
+    <link type="text/css" rel="stylesheet" href="../css/christopherdle.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CHRISTOPHERDLE</title>
 </head>
@@ -34,7 +34,7 @@
                 <a class="nav-item nav-link mx-1" href="candidates.html">MEET THE CANDIDATES</a>
                 <a class="nav-item nav-link mx-1" href="ourplatform.html">OUR PLATFORM</a>
                 <a class="nav-item nav-link mx-1" href="jointhemovement.html">JOIN THE MOVEMENT</a>
-                <a class="nav-item nav-link mx-1 active" href="wordle.html">CHRISTOPHERDLE</a>
+                <a class="nav-item nav-link mx-1 active" href="christopherdle.html">CHRISTOPHERDLE</a>
             </div>
         </div>
     </nav>
@@ -42,7 +42,7 @@
       <!-- ***** END NAVIGATION BAR ***** -->
 
 
-    <div id="wordle">
+    <div id="christopherdle">
         <div id="letters"></div>
         <div id="keyboard"></div>
         <div id="result" class="hide">
@@ -59,6 +59,7 @@
             </div>
         </div>
     </div>
+    <div id="modal-alert" class="hide"><p></p></div>
 
    <!-- ***** FOOTER ***** -->
 
@@ -71,6 +72,7 @@
 
 <!-- ***** END FOOTER ***** -->
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -83,7 +85,7 @@
     <script src="js/wow.min.js"></script>
     <script src="js/scrolling.js"></script>
     <script src="../js/words.js"></script>
-    <script src="../js/wordle.js"></script>
+    <script src="../js/christopherdle.js"></script>
     <script>
         new WOW().init();
     </script>
