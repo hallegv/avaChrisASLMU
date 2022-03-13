@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../css/christopherdle.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CHRISTOPHERDLE</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+
+
+    <!-- ***** NAVIGATION BAR ***** -->
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <img id="mainLogo" src="../images/chrisAvaLogo.jpeg"/>
+        <img id="christopherdleLogo" src="https://static.wixstatic.com/media/f978aa_64c4b662571d4b3f829465657e5154c0~mv2.png/v1/fill/w_1200,h_290,al_c,usm_0.66_1.00_0.01,enc_auto/The%20Christopherdle!-5%20white.png" />
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
+            aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link mx-1" href="index.html">HOME</a>
+                <a class="nav-item nav-link mx-1" href="candidates.html">MEET THE CANDIDATES</a>
+                <a class="nav-item nav-link mx-1" href="ourplatform.html">OUR PLATFORM</a>
+                <a class="nav-item nav-link mx-1" href="jointhemovement.html">JOIN THE MOVEMENT</a>
+                <a class="nav-item nav-link mx-1 active" href="christopherdle.html">CHRISTOPHERDLE</a>
+            </div>
+        </div>
+    </nav>
+  
+      <!-- ***** END NAVIGATION BAR ***** -->
+
+
+    <div id="christopherdle">
+        <div id="letters"></div>
+        <div id="keyboard"></div>
+        <div id="result" class="hide">
+            <div id="container">
+              <div id="results"><p></p></div>
+              <canvas></canvas>
+              <div id="bottom">
+                <div id="timer">
+                    <p>Next Christopherdle</p>
+                    <p id="time">HH:MM:SS</p>
+                </div>
+                <button class="button"><p></p><i id="insta" class="social fab fa-instagram hide" aria-hidden="true"></i></button>
+              </div>
+              <ion-icon id="close" name="close"></ion-icon>
+            </div>
+        </div>
+        <ion-icon id="share" class="hide" name="share-outline"></ion-icon>
+        <div id="modal-alert" class="hide"><p></p></div>
+    </div>
+
+   <!-- ***** FOOTER ***** -->
+
+   <div id="contact" class="contact">
+    <div class="col-md-12 credits">
+      Website by
+      <a href="https://github.com/hallegv"><b>Halle Vogelpohl</b></a>
+    </div>
+  </div>
+
+<!-- ***** END FOOTER ***** -->
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    </script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/scrolling.js"></script>
+    <script src="../js/words.js"></script>
+    <script src="../js/christopherdle.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</body>
+</html>

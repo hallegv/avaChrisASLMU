@@ -1,9 +1,8 @@
 const RESULTS_TEMPLATE = new Image();
 RESULTS_TEMPLATE.setAttribute('crossOrigin', 'anonymous');
-RESULTS_TEMPLATE.src = "https://static.wixstatic.com/media/f978aa_c24b902f2ac348fbb0d852e71c3f4575~mv2.png/v1/fill/w_1080,h_1919,al_c,enc_auto/The%20Christopherdle!-3.png"
+RESULTS_TEMPLATE.src = "https://static.wixstatic.com/media/f978aa_4441548ac49c4e43a629ed09a12d6a02~mv2.png/v1/fill/w_1200,h_2132,al_c,usm_0.66_1.00_0.01,enc_auto/The%20Christopherdle!-4.png"
 
 let squares = 5 * 6;
-let target;
 
 let correctLetters = new Set();
 let misplacedLetters = new Set();
@@ -13,19 +12,23 @@ let enterCode = 13;
 let backspaceCode = 8;
 let gridRow = 0;
 let currentGuess = new Array();
+let prevGuesses = new Array();
 let colorsGuess = new Array();
 let prevStates = new Array();
 
-const DAY_INDEX = 3;//(new Date).getDate() - 14;
+const DAY_INDEX = 10;//(new Date).getDate() - 14;
 
 const KEYS = ["qwertyuiop", "asdfghjkl", "+zxcvbnm-"];
 
 const IS_MOBILE = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+const TARGET = getTarget();
+
 $(main);
 
 function main() {
-  target = getTarget();
+  $("#modal-alert").hide().removeClass("hide");
+  $('#result').hide().removeClass("hide");
   loadLetters();
   $(document.body).keydown(handleInput);
   loadKeyboard();
@@ -33,10 +36,18 @@ function main() {
   loadButton();
   let cookies = getCookies();
   if ("date" in cookies && 
-  "tries" in cookies && 
-  "colorSquares" in cookies &&
-  parseInt(cookies.date) >= (new Date()).getDate()) {
-    makeResults(cookies.tries, cookies.colorSquares.slice(1, -1).split(','))
+  "guesses" in cookies && 
+  parseInt(cookies.date) === (new Date()).getDate()) {
+    loadGame(JSON.parse(cookies.guesses));
+  }
+  $("#close").on("click", hideResults);
+  $("#share").on("click", showResults);
+}
+
+function loadGame(guesses) {
+  for (let guess of guesses) {
+    currentGuess = guess;
+    handleEnter();
   }
 }
 
@@ -52,14 +63,15 @@ function getCookies() {
 function loadButton(){
   let text = "Download";
   if (IS_MOBILE) {
-    text = "Share";
+    text = "SHARE";
+    $("#insta").removeClass("hide");
   }
-  $(".button").text(text);
+  $(".button > p").text(text);
 }
 
 function getTarget() {
   // return TARGETS[Math.floor(Math.random()*TARGETS.length)].split("");
-  return TARGETS[DAY_INDEX];
+  return TARGETS[DAY_INDEX].split("");
 }
 
 function loadLetters() {
@@ -105,13 +117,15 @@ function handleInput(e) {
 
 function handleEnter() {
   if (currentGuess.length < 5) {
-    console.log("MISSING LETTERS");
+    modalAlert("MISSING LETTERS")
     return;
   }
   if (!OPTIONS.has(currentGuess.join(''))){
-    console.log("NOT IN WORD LIST");
+    modalAlert("NOT IN WORD LIST");
     return;
   }
+  prevGuesses.push(currentGuess);
+  saveGameToCookies();
   renderGuess();
   const states = checkGuess();
   prevStates.push(states);
@@ -125,15 +139,27 @@ function handleEnter() {
     $(".key").off("click");
     let tries = gameOver === 1 ? gridRow : "X";
     let colorSquares = getColorSquares();
+    $("#share").removeClass("hide");
     makeResults(tries, colorSquares);
-    saveGameToCookies(tries, colorSquares);
   }
 }
 
-function saveGameToCookies(tries, colorSquares){
+function modalAlert(text) {
+  let fadeInTime = 300;
+  let fadeOutTime = 500;
+  $("#modal-alert > p").text(text)
+  let modalDiv = $("#modal-alert");
+  modalDiv.fadeIn(fadeInTime).show();
+  setTimeout(x => {
+    modalDiv.fadeOut(fadeOutTime);
+    setTimeout(x => {modalDiv.hide()}, fadeOutTime);
+  }
+  , 2000 - (fadeInTime + fadeOutTime));
+}
+
+function saveGameToCookies(){
   document.cookie = `date=${(new Date).getDate()}`;
-  document.cookie = `tries=${tries}`;
-  document.cookie = `colorSquares=[${colorSquares}]`;
+  document.cookie = `guesses=${JSON.stringify(prevGuesses)}`;
 }
 
 function makeResults(tries, colorSquares) {
@@ -141,33 +167,35 @@ function makeResults(tries, colorSquares) {
   const ctx = canvas.getContext('2d');
 
   const vh = window.innerHeight / 100;
-  const base = 3;
+  const base = 2.5;
   const w = base * 9 * vh;
   const h = base * 16 * vh;
   canvas.width = w;
   canvas.height = h;
 
+  while (!RESULTS_TEMPLATE.complete){}
+
   ctx.drawImage(RESULTS_TEMPLATE, 0, 0, w, h);
   ctx.textAlign = "center";
-  ctx.font = "3vh serif";
+  ctx.font = "2.4vh serif";
   const lineheight = ctx.font.match(/\d+/).join('') * 1.4;
   for (let i = 0; i < colorSquares.length; i++) {
     ctx.fillText(colorSquares[i], w/2, h/4 + (i * lineheight));
   }
   ctx.font = "bold 3vh 'playfair display'"
-  ctx.fillText(`#${DAY_INDEX+1}`, w - 4 * vh, 6.15 * vh);
+  ctx.fillText(`#${DAY_INDEX+1}`, w - 3 * vh, 5.2 * vh);
 
-  let winText = "You won! Now show the world how smart you are (and who you're voting for). Don't forget to tag @chrisandava2022";
-  let lossText = "Better luck next time. Share your results (and who you're voting for). Don't forget to tag @chrisandava2022"
+  let winText = "You won! Now show the world how smart you are (and who you're voting for). Don't forget to tag @chrisandava2022!";
+  let lossText = `Better luck next time. The word was ${TARGET.join('').toUpperCase()}. Share your results (and who you're voting for). Don't forget to tag @chrisandava2022!`;
   $("#results > p").text(`${tries}/6 ${tries != "X" ? winText : lossText}`);
-  addButtonDownload(canvas);
+  addButtonDownload(colorSquares);
   setTimeout(showResults, 1000);
 }
 
-function addButtonDownload(canvas) {
+function addButtonDownload(colorSquares) {
   $(".button").on("click", x => {
     let anchor = document.createElement("a");
-    anchor.href = canvas.toDataURL("image/png");
+    anchor.href = getCanvasURL(colorSquares);
     anchor.download = "result.png";
     anchor.click();
     anchor.remove();
@@ -180,8 +208,39 @@ function addButtonDownload(canvas) {
   })
 }
 
+function getCanvasURL(colorSquares) {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext('2d');
+
+  const vh = window.innerHeight / 100;
+  const w = 1200;
+  const h = 2132;
+  canvas.width = w;
+  canvas.height = h;
+
+  while (!RESULTS_TEMPLATE.complete){}
+
+  ctx.drawImage(RESULTS_TEMPLATE, 0, 0);
+  ctx.textAlign = "center";
+  ctx.font = "17vh serif";
+  const lineheight = ctx.font.match(/\d+/).join('') * 1.4;
+  for (let i = 0; i < colorSquares.length; i++) {
+    ctx.fillText(colorSquares[i], w/2, h/4 + (i * lineheight));
+  }
+  ctx.font = "bold 20vh 'playfair display'"
+  ctx.fillText(`#${DAY_INDEX+1}`, w - 20 * vh, 38 * vh);
+
+  return canvas.toDataURL('image/png')
+}
+
 function showResults(){
-  $("#result").removeClass("hide");
+  $("#result").fadeIn(400).show();
+}
+
+function hideResults() {
+  let fadeTime = 300;
+  $("#result").fadeOut(fadeTime);
+  setTimeout($("#result").hide, fadeTime)
 }
 
 function getColorSquares() {
@@ -192,31 +251,31 @@ function getColorSquares() {
 }
 
 function checkGuess() {
-  if (currentGuess === target) {
+  if (currentGuess === TARGET) {
     return new Array(5).fill("correct");
   }
 
-  let targetCopy = [...target];
+  let targetCopy = [...TARGET];
   let currentGuessCopy = [...currentGuess];
-  let states = new Array(target.length);
+  let states = new Array(TARGET.length);
 
   for (let i = 0; i < states.length; i++) {
-    if (currentGuess[i] === targetCopy[i]) {
+    if (currentGuessCopy[i] === targetCopy[i]) {
       states[i] = "correct";
       targetCopy[i] = undefined;
-      currentGuess[i] = undefined;
-      correctLetters.add(currentGuessCopy[i]);
-      misplacedLetters.delete(currentGuessCopy[i]);
+      currentGuessCopy[i] = undefined;
+      correctLetters.add(currentGuess[i]);
+      misplacedLetters.delete(currentGuess[i]);
     }
   }
 
   for (let i = 0; i < states.length; i++) {
-    if (currentGuess[i] != undefined && targetCopy.includes(currentGuess[i])) {
+    if (currentGuessCopy[i] != undefined && targetCopy.includes(currentGuessCopy[i])) {
       states[i] = "misplaced";
-      targetCopy[targetCopy.indexOf(currentGuess[i])] = undefined;
-      currentGuess[i] = undefined;
-      if (!correctLetters.has(currentGuessCopy[i])) {
-        misplacedLetters.add(currentGuessCopy[i]);
+      targetCopy[targetCopy.indexOf(currentGuessCopy[i])] = undefined;
+      currentGuessCopy[i] = undefined;
+      if (!correctLetters.has(currentGuess[i])) {
+        misplacedLetters.add(currentGuess[i]);
       }
     }
   }
@@ -225,10 +284,10 @@ function checkGuess() {
     if (states[i] === undefined) {
       states[i] = "wrong";
       if (
-        !correctLetters.has(currentGuessCopy[i]) &&
-        !misplacedLetters.has(currentGuessCopy[i])
+        !correctLetters.has(currentGuess[i]) &&
+        !misplacedLetters.has(currentGuess[i])
       ) {
-        wrongLetters.add(currentGuessCopy[i]);
+        wrongLetters.add(currentGuess[i]);
       }
     }
   }
@@ -238,7 +297,7 @@ function checkGuess() {
 function renderColors(states) {
   let start = gridRow * 5 + 1;
   for (let i = 0; i < states.length; i++) {
-    $(`.letter:nth-child(${i + start})`).addClass(states[i]);
+    setTimeout(x => $(`.letter:nth-child(${i + start})`).addClass(states[i]), i*150);
   }
 }
 
