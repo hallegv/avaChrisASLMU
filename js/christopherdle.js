@@ -16,7 +16,7 @@ let prevGuesses = new Array();
 let colorsGuess = new Array();
 let prevStates = new Array();
 
-const DAY_INDEX = 3;//(new Date).getDate() - 14;
+const DAY_INDEX = 10;//(new Date).getDate() - 14;
 
 const KEYS = ["qwertyuiop", "asdfghjkl", "+zxcvbnm-"];
 
@@ -28,6 +28,7 @@ $(main);
 
 function main() {
   $("#modal-alert").hide().removeClass("hide");
+  $('#result').hide().removeClass("hide");
   loadLetters();
   $(document.body).keydown(handleInput);
   loadKeyboard();
@@ -39,6 +40,8 @@ function main() {
   parseInt(cookies.date) === (new Date()).getDate()) {
     loadGame(JSON.parse(cookies.guesses));
   }
+  $("#close").on("click", hideResults);
+  $("#share").on("click", showResults);
 }
 
 function loadGame(guesses) {
@@ -60,9 +63,10 @@ function getCookies() {
 function loadButton(){
   let text = "Download";
   if (IS_MOBILE) {
-    text = "Share";
+    text = "SHARE";
+    $("#insta").removeClass("hide");
   }
-  $(".button").text(text);
+  $(".button > p").text(text);
 }
 
 function getTarget() {
@@ -135,6 +139,7 @@ function handleEnter() {
     $(".key").off("click");
     let tries = gameOver === 1 ? gridRow : "X";
     let colorSquares = getColorSquares();
+    $("#share").removeClass("hide");
     makeResults(tries, colorSquares);
   }
 }
@@ -162,33 +167,35 @@ function makeResults(tries, colorSquares) {
   const ctx = canvas.getContext('2d');
 
   const vh = window.innerHeight / 100;
-  const base = 3;
+  const base = 2.5;
   const w = base * 9 * vh;
   const h = base * 16 * vh;
   canvas.width = w;
   canvas.height = h;
 
+  while (!RESULTS_TEMPLATE.complete){}
+
   ctx.drawImage(RESULTS_TEMPLATE, 0, 0, w, h);
   ctx.textAlign = "center";
-  ctx.font = "3vh serif";
+  ctx.font = "2.4vh serif";
   const lineheight = ctx.font.match(/\d+/).join('') * 1.4;
   for (let i = 0; i < colorSquares.length; i++) {
     ctx.fillText(colorSquares[i], w/2, h/4 + (i * lineheight));
   }
   ctx.font = "bold 3vh 'playfair display'"
-  ctx.fillText(`#${DAY_INDEX+1}`, w - 4 * vh, 6.15 * vh);
+  ctx.fillText(`#${DAY_INDEX+1}`, w - 3 * vh, 5.2 * vh);
 
-  let winText = "You won! Now show the world how smart you are (and who you're voting for). Don't forget to tag @chrisandava2022";
-  let lossText = `Better luck next time. The word was ${TARGET.join('').toUpperCase()}. Share your results (and who you're voting for). Don't forget to tag @chrisandava2022`;
+  let winText = "You won! Now show the world how smart you are (and who you're voting for). Don't forget to tag @chrisandava2022!";
+  let lossText = `Better luck next time. The word was ${TARGET.join('').toUpperCase()}. Share your results (and who you're voting for). Don't forget to tag @chrisandava2022!`;
   $("#results > p").text(`${tries}/6 ${tries != "X" ? winText : lossText}`);
-  addButtonDownload(canvas);
+  addButtonDownload(colorSquares);
   setTimeout(showResults, 1000);
 }
 
-function addButtonDownload(canvas) {
+function addButtonDownload(colorSquares) {
   $(".button").on("click", x => {
     let anchor = document.createElement("a");
-    anchor.href = canvas.toDataURL("image/png");
+    anchor.href = getCanvasURL(colorSquares);
     anchor.download = "result.png";
     anchor.click();
     anchor.remove();
@@ -201,8 +208,39 @@ function addButtonDownload(canvas) {
   })
 }
 
+function getCanvasURL(colorSquares) {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext('2d');
+
+  const vh = window.innerHeight / 100;
+  const w = 1200;
+  const h = 2132;
+  canvas.width = w;
+  canvas.height = h;
+
+  while (!RESULTS_TEMPLATE.complete){}
+
+  ctx.drawImage(RESULTS_TEMPLATE, 0, 0);
+  ctx.textAlign = "center";
+  ctx.font = "17vh serif";
+  const lineheight = ctx.font.match(/\d+/).join('') * 1.4;
+  for (let i = 0; i < colorSquares.length; i++) {
+    ctx.fillText(colorSquares[i], w/2, h/4 + (i * lineheight));
+  }
+  ctx.font = "bold 20vh 'playfair display'"
+  ctx.fillText(`#${DAY_INDEX+1}`, w - 20 * vh, 38 * vh);
+
+  return canvas.toDataURL('image/png')
+}
+
 function showResults(){
-  $("#result").removeClass("hide");
+  $("#result").fadeIn(400).show();
+}
+
+function hideResults() {
+  let fadeTime = 300;
+  $("#result").fadeOut(fadeTime);
+  setTimeout($("#result").hide, fadeTime)
 }
 
 function getColorSquares() {
@@ -259,7 +297,7 @@ function checkGuess() {
 function renderColors(states) {
   let start = gridRow * 5 + 1;
   for (let i = 0; i < states.length; i++) {
-    $(`.letter:nth-child(${i + start})`).addClass(states[i]);
+    setTimeout(x => $(`.letter:nth-child(${i + start})`).addClass(states[i]), i*150);
   }
 }
 

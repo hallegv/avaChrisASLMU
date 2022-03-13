@@ -15,6 +15,8 @@
     <link type="text/css" rel="stylesheet" href="../css/christopherdle.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CHRISTOPHERDLE</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
@@ -23,7 +25,8 @@
     <!-- ***** NAVIGATION BAR ***** -->
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <img id="mainLogo" src="../images/chrisAvaLogo.jpeg" style="height:10vh"/>
+        <img id="mainLogo" src="../images/chrisAvaLogo.jpeg"/>
+        <img id="christopherdleLogo" src="https://static.wixstatic.com/media/f978aa_64c4b662571d4b3f829465657e5154c0~mv2.png/v1/fill/w_1200,h_290,al_c,usm_0.66_1.00_0.01,enc_auto/The%20Christopherdle!-5%20white.png" />
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
             aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -54,12 +57,14 @@
                     <p>Next Christopherdle</p>
                     <p id="time">HH:MM:SS</p>
                 </div>
-                <button class="button"></button>
+                <button class="button"><p></p><i id="insta" class="social fab fa-instagram hide" aria-hidden="true"></i></button>
               </div>
+              <ion-icon id="close" name="close"></ion-icon>
             </div>
         </div>
+        <ion-icon id="share" class="hide" name="share-outline"></ion-icon>
+        <div id="modal-alert" class="hide"><p></p></div>
     </div>
-    <div id="modal-alert" class="hide"><p></p></div>
 
    <!-- ***** FOOTER ***** -->
 
@@ -90,5 +95,4 @@
         new WOW().init();
     </script>
 </body>
-
 </html>
