@@ -1,4 +1,4 @@
-#wordle {
+#christopherdle {
   width: 100vw;
   height: 80vh;
   margin: 0;
@@ -157,4 +157,27 @@ canvas {
   left: 0;
   bottom: 0;
   width: 100%;
+}
+
+#modal-alert {
+  background-color: var(--pink);
+  width: fit-content;
+  padding: 0 1.2vw;
+  font-size: 5vh;
+  color: var(--navy);
+  height: 10vh;
+  position: absolute;
+  top: 16vh;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#modal-alert > p {
+  margin: 0;
+  padding: 0;
+  height: fit-content;
 }
