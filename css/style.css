@@ -16,6 +16,46 @@
   --navy: #2f4260;
 }
 
+@media screen and (max-width: 750px) {
+  
+.main-heading {
+  color: var(--red);
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+.main-heading-up {
+  color: var(--red);
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  margin-top: -20%;
+}
+
+.main-heading-down {
+  color: var(--red);
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  margin-top: 20%;
+}
+
+.main-heading-down-more {
+  color: var(--red);
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  margin-top: 35%;
+}
+
+.small-heading {
+  color: var(--red);
+  font-size: 20px;
+  font-weight: lighter;
+}
+}
+
 html,
 body {
   height: 100%;
@@ -33,6 +73,10 @@ body {
   justify-content: center;
   background-color: var(--pink);
   text-align: center;
+}
+
+.col {
+  background-color: var(--pink);
 }
 
 section {
@@ -119,6 +163,10 @@ hr {
   padding: 0 !important;
 }
 
+.endorsement {
+  background-color: var(--cream);
+}
+
 /***** NAVIGATION BAR *****/
 
 .navbar-dark,
@@ -170,7 +218,7 @@ header {
   background-position: center;
   background-size: cover;
   object-fit: cover;
-  object-position: 100% 30%;
+  object-position: 100% 40%;
   height: 100%;
   width: 100%;
 }
@@ -208,9 +256,34 @@ header {
 
 .main-heading {
   color: var(--red);
-  font-size: 80px;
+  font-size: 50px;
   font-weight: bold;
   letter-spacing: 10px;
+}
+
+.main-heading-up {
+  color: var(--red);
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  margin-top: -20%;
+}
+
+.main-heading-down {
+  color: var(--red);
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  margin-top: 20%;
+  margin-left: -24%;
+}
+
+.main-heading-down-more {
+  color: var(--red);
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  margin-top: 35%;
 }
 
 .small-heading {
@@ -322,10 +395,17 @@ header {
   font-size: 90px;
 }
 
+.platform-statement {
+
+  display: flex;
+  justify-content: center;
+}
+
 .platform {
   background-color: var(--pink);
   padding: 50px 0;
   text-align: center;
+  justify-content: center;
 }
 
 .platform h1,
@@ -334,7 +414,7 @@ header {
   color: var(--red);
 }
 
-.platform img {
+.platform img, .endorsement img {
   /* Safari and Chrome */
   -moz-transition: all 1s ease;
   /* Firefox */
@@ -350,7 +430,7 @@ header {
   transition: all 1s ease;
 }
 
-.platform img:hover {
+img:hover {
   /* Safari and Chrome */
   -moz-transform: scale(1.1);
   /* Firefox */
@@ -374,12 +454,6 @@ header {
 
 .platform i:hover {
   color: black;
-}
-
-@media (max-width: 768px) {
-  .platform {
-    padding: 30px;
-  }
 }
 
 /***** END OUR PLATFORM *****/
