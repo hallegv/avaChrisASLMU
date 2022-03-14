@@ -43,6 +43,10 @@ body {
   text-align: center;
 }
 
+.col {
+  background-color: var(--pink);
+}
+
 section {
   padding: 40px;
   background-color: var(--pink);
@@ -125,6 +129,10 @@ hr {
 .nopadding {
   margin: 0 !important;
   padding: 0 !important;
+}
+
+.endorsement {
+  background-color: var(--cream);
 }
 
 /***** NAVIGATION BAR *****/
@@ -354,10 +362,17 @@ header {
   font-size: 90px;
 }
 
+.platform-statement {
+
+  display: flex;
+  justify-content: center;
+}
+
 .platform {
   background-color: var(--pink);
   padding: 50px 0;
   text-align: center;
+  justify-content: center;
 }
 
 .platform h1,
@@ -366,7 +381,7 @@ header {
   color: var(--red);
 }
 
-.platform img {
+.platform img, .endorsement img {
   /* Safari and Chrome */
   -moz-transition: all 1s ease;
   /* Firefox */
@@ -382,7 +397,7 @@ header {
   transition: all 1s ease;
 }
 
-.platform img:hover {
+img:hover {
   /* Safari and Chrome */
   -moz-transform: scale(1.1);
   /* Firefox */
