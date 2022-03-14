@@ -70,7 +70,6 @@ function loadButton(){
 }
 
 function getTarget() {
-  // return TARGETS[Math.floor(Math.random()*TARGETS.length)].split("");
   return TARGETS[DAY_INDEX].split("");
 }
 
@@ -212,7 +211,6 @@ function getCanvasURL(colorSquares) {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext('2d');
 
-  const vh = window.innerHeight / 100;
   const w = 1200;
   const h = 2132;
   canvas.width = w;
@@ -222,13 +220,13 @@ function getCanvasURL(colorSquares) {
 
   ctx.drawImage(RESULTS_TEMPLATE, 0, 0);
   ctx.textAlign = "center";
-  ctx.font = "17vh serif";
-  const lineheight = ctx.font.match(/\d+/).join('') * 1.4;
+  ctx.font = "123px serif";
+  const lineheight = 123 * 1.4;
   for (let i = 0; i < colorSquares.length; i++) {
     ctx.fillText(colorSquares[i], w/2, h/4 + (i * lineheight));
   }
-  ctx.font = "bold 20vh 'playfair display'"
-  ctx.fillText(`#${DAY_INDEX+1}`, w - 20 * vh, 38 * vh);
+  ctx.font = "bold 144px 'playfair display'"
+  ctx.fillText(`#${DAY_INDEX+1}`, w - 144.2, 274);
 
   return canvas.toDataURL('image/png')
 }
