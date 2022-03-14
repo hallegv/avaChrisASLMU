@@ -193,14 +193,12 @@ function makeResults(tries, colorSquares) {
 
 function addButtonDownload(colorSquares) {
   $(".button").on("click", x => {
-    let anchor = document.createElement("a");
-    anchor.href = getCanvasURL(colorSquares);
-    anchor.download = "result.png";
-    anchor.click();
-    anchor.remove();
     if (IS_MOBILE) {
+      shareCanvas(colorSquares);
+    } else {
       let anchor = document.createElement("a");
-      anchor.href = "instagram://story-camera";
+      anchor.href = getCanvasURL(colorSquares);
+      anchor.download = "result.png";
       anchor.click();
       anchor.remove();
     }
@@ -230,6 +228,25 @@ function getCanvasURL(colorSquares) {
   ctx.fillText(`#${DAY_INDEX}`, w - 144.2, 274);
 
   return canvas.toDataURL('image/png')
+}
+
+async function shareCanvas(colorSquares) {
+  const dataUrl = getCanvasURL(colorSquares);
+  const blob = await (await fetch(dataUrl)).blob();
+  const filesArray = [
+    new File(
+      [blob],
+      'result.png',
+      {
+        type: blob.type,
+        lastModified: new Date().getTime()
+      }
+    )
+  ];
+  const shareData = {
+    files: filesArray,
+  };
+  navigator.share(shareData);
 }
 
 function addSpaces(squaresString) {
