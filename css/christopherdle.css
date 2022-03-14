@@ -14,7 +14,7 @@ body {
   width: 100vw;
   height: 91vh;
   display: grid;
-  grid-template-rows: 60% 40%;
+  grid-template-rows: 55% 45%;
   place-items: center;
   user-select: none;
   font-family: Helvetica, sans-serif;
@@ -57,7 +57,7 @@ body {
 }
 
 #keyboard {
-
+  place-self: normal;
 }
 
 .key {
@@ -109,7 +109,6 @@ body {
   top: 0;
   right: 0;
   margin: 0;
-  padding-top: 10vh;
   height: 100%;
   width: 100%;
   backdrop-filter: blur(1.3vmin) brightness(60%);
@@ -122,13 +121,13 @@ body {
 
 #container {
   width: min(90%, 60vh);
-  height: 90%;
+  height: 85%;
   background-color: var(--navy);
   border-radius: 1.5vh;
   box-shadow: 0 .7vh 1.4vh rgb(0 0 0 / 50%);
   text-align: center;
-  padding-top: 1vh;
   position: relative;
+  bottom: 4vh;
 }
 
 #container p {
