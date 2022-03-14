@@ -20,11 +20,11 @@
   .carousel-inner, .full-width, .navbar-dark, .bg-dark {
     width: 85%;
   }
-  .main-heading, .main-heading-down, .main-heading-down-more, .main-heading-up {
+  .carousel-caption, .main-heading, .main-heading-down, .main-heading-down-more, .main-heading-up {
      font-size: 20px; 
   }
   img {
-    
+
   }
 }
 
