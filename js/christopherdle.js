@@ -16,7 +16,7 @@ let prevGuesses = new Array();
 let colorsGuess = new Array();
 let prevStates = new Array();
 
-const DAY_INDEX = 10;//(new Date).getDate() - 14;
+const DAY_INDEX = (new Date).getDate() - 13;
 
 const KEYS = ["qwertyuiop", "asdfghjkl", "+zxcvbnm-"];
 
@@ -182,7 +182,7 @@ function makeResults(tries, colorSquares) {
     ctx.fillText(colorSquares[i], w/2, h/4 + (i * lineheight));
   }
   ctx.font = "bold 3vh 'playfair display'"
-  ctx.fillText(`#${DAY_INDEX+1}`, w - 3 * vh, 5.2 * vh);
+  ctx.fillText(`#${DAY_INDEX}`, w - 3 * vh, 5.2 * vh);
 
   let winText = "You won! Now show the world how smart you are (and who you're voting for). Don't forget to tag @chrisandava2022!";
   let lossText = `Better luck next time. The word was ${TARGET.join('').toUpperCase()}. Share your results (and who you're voting for). Don't forget to tag @chrisandava2022!`;
@@ -223,12 +223,23 @@ function getCanvasURL(colorSquares) {
   ctx.font = "123px serif";
   const lineheight = 123 * 1.4;
   for (let i = 0; i < colorSquares.length; i++) {
-    ctx.fillText(colorSquares[i], w/2, h/4 + (i * lineheight));
+    
+    ctx.fillText(addSpaces(colorSquares[i]), w/2, h/4 + (i * lineheight));
   }
   ctx.font = "bold 144px 'playfair display'"
-  ctx.fillText(`#${DAY_INDEX+1}`, w - 144.2, 274);
+  ctx.fillText(`#${DAY_INDEX}`, w - 144.2, 274);
 
   return canvas.toDataURL('image/png')
+}
+
+function addSpaces(squaresString) {
+  let newStringArray = new Array();
+  for (const s of squaresString) {
+    newStringArray.push(s);
+    newStringArray.push(" ");
+  }
+  newStringArray.pop();
+  return newStringArray.join('');
 }
 
 function showResults(){
