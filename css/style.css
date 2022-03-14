@@ -16,7 +16,7 @@
   --navy: #2f4260;
 }
 
-@media only screen and (max-width: 750px) {
+@media screen and (max-width: 750px) {
   
 .main-heading {
   color: var(--red);
