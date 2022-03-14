@@ -59,6 +59,7 @@ html, body {
 
 #keyboard {
   place-self: end;
+  justify-self: center;
   padding-bottom: 1%;
 }
 
