@@ -54,9 +54,6 @@
   font-size: 20px;
   font-weight: lighter;
 }
-  img {
-
-  }
 }
 
 html,
@@ -455,12 +452,6 @@ img:hover {
 
 .platform i:hover {
   color: black;
-}
-
-@media (max-width: 768px) {
-  .platform {
-    padding: 30px;
-  }
 }
 
 /***** END OUR PLATFORM *****/
