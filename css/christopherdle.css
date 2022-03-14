@@ -10,6 +10,10 @@ html, body {
   padding: 1% 1rem;
   height: 9%;
 }
+/* 
+.navbar-dark, .bg-dark {
+  height: auto !important;
+} */
 
 #christopherdle {
   width: 100vw;

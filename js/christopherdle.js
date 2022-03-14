@@ -42,6 +42,13 @@ function main() {
   }
   $("#close").on("click", hideResults);
   $("#share").on("click", showResults);
+  setLogoHeight()
+}
+
+function setLogoHeight() {
+  $("#mainLogo").height($("#mainLogo").height());
+  $("#christopherdleLogo").height($("#christopherdleLogo").height());
+  $(".navbar").css("height", "auto");
 }
 
 function loadGame(guesses) {
