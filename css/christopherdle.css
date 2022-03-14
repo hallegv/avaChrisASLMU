@@ -121,7 +121,7 @@ body {
 
 #container {
   width: min(90%, 60vh);
-  height: 85%;
+  height: 80%;
   background-color: var(--navy);
   border-radius: 1.5vh;
   box-shadow: 0 .7vh 1.4vh rgb(0 0 0 / 50%);
@@ -246,4 +246,20 @@ body {
 
 #contact {
   display: none;
+}
+
+
+@media (orientation: portrait) {
+  .key {
+    min-width: 9vw;
+  }
+
+  #ENTER > p {
+    padding: 0 3vw;
+  }
+
+  #DELETE > p {
+    padding: 0 2.5vw;
+  }
+
 }
