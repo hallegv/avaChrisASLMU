@@ -16,12 +16,12 @@
   --navy: #2f4260;
 }
 
-@media (max-width: 750px) {
+@media only screen and (max-device-width: 750px) {
   .carousel-inner, .full-width, .navbar-dark, .bg-dark {
     width: 85%;
   }
   .main-heading, .main-heading-down, .main-heading-down-more, .main-heading-up {
-    font-size: 20px;
+     font-size: 20px; 
   }
 }
 
