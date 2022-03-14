@@ -255,14 +255,14 @@ header {
 
 .main-heading {
   color: var(--red);
-  font-size: 80px;
+  font-size: 50px;
   font-weight: bold;
   letter-spacing: 10px;
 }
 
 .main-heading-up {
   color: var(--red);
-  font-size: 80px;
+  font-size: 50px;
   font-weight: bold;
   letter-spacing: 10px;
   margin-top: -20%;
@@ -270,15 +270,16 @@ header {
 
 .main-heading-down {
   color: var(--red);
-  font-size: 80px;
+  font-size: 50px;
   font-weight: bold;
   letter-spacing: 10px;
   margin-top: 20%;
+  margin-left: -24%;
 }
 
 .main-heading-down-more {
   color: var(--red);
-  font-size: 70px;
+  font-size: 50px;
   font-weight: bold;
   letter-spacing: 10px;
   margin-top: 35%;
