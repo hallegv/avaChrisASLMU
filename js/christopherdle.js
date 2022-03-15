@@ -136,18 +136,20 @@ function handleEnter() {
   const states = checkGuess();
   prevStates.push(states);
   renderColors(states);
-  renderKeyboard();
-  currentGuess = new Array();
-  gridRow++;
-  let gameOver = isGameOver(states);
-  if (gameOver != 0) {
-    $(document.body).off("keydown");
-    $(".key").off("click");
-    let tries = gameOver === 1 ? gridRow : "X";
-    let colorSquares = getColorSquares();
-    $("#share").removeClass("hide");
-    makeResults(tries, colorSquares);
-  }
+  setTimeout(() =>{
+    renderKeyboard()
+    currentGuess = new Array();
+    gridRow++;
+    let gameOver = isGameOver(states);
+    if (gameOver != 0) {
+      $(document.body).off("keydown");
+      $(".key").off("click");
+      let tries = gameOver === 1 ? gridRow : "X";
+      let colorSquares = getColorSquares();
+      $("#share").removeClass("hide");
+      makeResults(tries, colorSquares);
+    }
+  }, 1200);
 }
 
 function modalAlert(text) {
@@ -330,7 +332,7 @@ function checkGuess() {
 function renderColors(states) {
   let start = gridRow * 5 + 1;
   for (let i = 0; i < states.length; i++) {
-    setTimeout(x => $(`.letter:nth-child(${i + start})`).addClass(states[i]), i*150);
+    setTimeout(x => $(`.letter:nth-child(${i + start})`).addClass(states[i]), i*200);
   }
 }
 
